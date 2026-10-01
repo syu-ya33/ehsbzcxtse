@@ -114,24 +114,24 @@ async def on_ready():
 async def coc_6th_cmd(ctx):
     embed = discord.Embed(
         title="🎲 クトゥルフ神話TRPG (6版) キャラクター作成",
-        description=f"{ctx.author.mention} さんの探索者候補です。好きなセットを選んでください！",
+        description=f"{ctx.author.mention} さんの探索者候補です。好きなセットを1つ選んでください！",
         color=0x2b2d31
     )
     for i in range(1, 4):
         embed.add_field(name=f"ーーー セット {i} ーーー", value=make_coc_6th(), inline=False)
-    embed.set_footer(text="※ハウスルールに合わせて適宜入れ替えや振り直しを行ってください。")
+    embed.set_footer(text="※ハウスルールに合わせて適宜、能力値の調整の調整を行ってください。")
     await ctx.send(embed=embed)
 
 @bot.command(name="coc7")
 async def coc_7th_cmd(ctx):
     embed = discord.Embed(
         title="🐙 新クトゥルフ神話TRPG (7版) キャラクター作成",
-        description=f"{ctx.author.mention} さんの探索者候補です。好きなセットを選んでください！",
+        description=f"{ctx.author.mention} さんの探索者候補です。好きなセットを1つ選んでください！",
         color=0x992d22
     )
     for i in range(1, 4):
         embed.add_field(name=f"ーーー セット {i} ーーー", value=make_coc_7th(), inline=False)
-    embed.set_footer(text="※7版は数値が5倍済みです。年齢補正（MOV減少など）は別途適用してください。")
+    embed.set_footer(text="※ハウスルールに合わせて適宜、能力値の調整の調整を行ってください。")
     await ctx.send(embed=embed)
 
 @bot.command(name="ft", aliases=["tokucho"])
@@ -143,7 +143,7 @@ async def feature_cmd(ctx):
     )
     for i in range(1, 4):
         embed.add_field(name=f"候補 {i}", value=roll_feature(), inline=False)
-    embed.set_footer(text="※デメリット特徴が出た場合は指示に従って追加技能ポイントを割り振ってください。")
+    embed.set_footer(text="※3つの名から好きなものを最大2つまで選択してください。")
     await ctx.send(embed=embed)
 
 bot.run(os.environ.get('DISCORD_BOT_TOKEN'))
