@@ -5,7 +5,7 @@ import random
 # Botのプレフィックス（!coc で発動）
 intents = discord.Intents.default()
 intents.message_content = True
-bot = commands.Bot(command_command="!", intents=intents)
+bot = commands.Bot(command_prefix="!", intents=intents)
 
 def roll_dice(num, sides):
     """num d sides を振る関数"""
