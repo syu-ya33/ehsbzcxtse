@@ -52,19 +52,61 @@ def make_coc_7th():
     int_val = (roll_dice(2, 6) + 6) * 5
     edu = (roll_dice(2, 6) + 6) * 5
     
+    luck = roll_dice(3, 6) * 5
+    
     total = str_val + con + dex + app + pow_val + siz + int_val + edu
     hp = (con + siz) // 10
     mp = pow_val // 5
     san = pow_val
-    mov = 8
+    
+    if str_val < siz and dex < siz:
+        mov = 7
+    elif str_val > siz and dex > siz:
+        mov = 9
+    else:
+        mov = 8
+
+    str_siz = str_val + siz
+    if str_siz <= 64:
+        db, bd = "-2", -2
+    elif str_siz <= 84:
+        db, bd = "-1", -1
+    elif str_siz <= 124:
+        db, bd = "0", 0
+    elif str_siz <= 164:
+        db, bd = "+1D4", 1
+    elif str_siz <= 204:
+        db, bd = "+1D6", 2
+    elif str_siz <= 284:
+        db, bd = "+2D6", 3
+    elif str_siz <= 364:
+        db, bd = "+3D6", 4
+    elif str_siz <= 444:
+        db, bd = "+4D6", 5
+    else:
+        db, bd = "+5D6", 6
     
     return (
         f"**STR**:{str_val}  **CON**:{con}  **DEX**:{dex}  **APP**:{app}  **POW**:{pow_val}\n"
         f"**SIZ**:{siz}  **INT**:{int_val}  **EDU**:{edu}\n"
-        f"**[派生]** HP:{hp} / MP:{mp} / 正気度:{san} / MOV:{mov}\n"
+        f"**[派生]** HP:{hp} / MP:{mp} / 正気度:{san} / 幸運:{luck}\n"
+        f"**[戦闘]** MOV:{mov} / DB:{db} / ビルド:{bd}\n"
         f"**【能力値合計】: {total}**"
     )
 
+# --- 特徴表ダイス生成処理 ---
+def roll_feature():
+    d6 = random.randint(1, 6)
+    d10 = random.randint(1, 10)
+    result_str = f"**{d6}-{d10}**"
+    
+    # 4-1 ～ 4-10 はデメリット特徴（追加技能ポイント発生）
+    if d6 == 4:
+        bonus_dice = random.randint(1, 6)
+        points = bonus_dice * 10
+        result_str += f" ⚠️ **[デメリット特徴]** ＋{points}pt (1D6:{bonus_dice}×10) の追加技能P獲得！"
+        
+    return result_str
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user.name}')
