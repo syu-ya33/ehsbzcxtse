@@ -99,4 +99,4 @@ async def coc_7th_cmd(ctx):
     await ctx.send(embed=embed)
 
 # あなたのBotのトークンをここに入力
-bot.run('MTU1NTE2MjcyNzI2NDAzNDg2OA.GDTPzJ.qZa57-SNUPsWd7xffk51vIQGdsZIb_qbCv5cCc')
+bot.run(os.environ.get('DISCORD_BOT_TOKEN'))
