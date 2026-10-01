@@ -94,20 +94,18 @@ def make_coc_7th():
         f"**【能力値合計】: {total}**"
     )
 
-# --- 特徴表ダイス生成処理 ---
 def roll_feature():
     d6 = random.randint(1, 6)
     d10 = random.randint(1, 10)
     result_str = f"**{d6}-{d10}**"
     
-    # 4-1 ～ 4-10 はデメリット特徴（追加技能ポイント発生）
     if d6 == 4:
         bonus_dice = random.randint(1, 6)
         points = bonus_dice * 10
         result_str += f" ⚠️ **[デメリット特徴]** ＋{points}pt (1D6:{bonus_dice}×10) の追加技能P獲得！"
         
     return result_str
-    
+
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user.name}')
@@ -116,27 +114,28 @@ async def on_ready():
 async def coc_6th_cmd(ctx):
     embed = discord.Embed(
         title="🎲 クトゥルフ神話TRPG (6版) キャラクター作成",
-        description=f"{ctx.author.mention} さんの探索者候補です。好きなセットを1つ選んでください！",
+        description=f"{ctx.author.mention} さんの探索者候補です。好きなセットを選んでください！",
         color=0x2b2d31
     )
     for i in range(1, 4):
         embed.add_field(name=f"ーーー セット {i} ーーー", value=make_coc_6th(), inline=False)
-    embed.set_footer(text="※ハウスルールに合わせて適宜入れ替えや再配分を行ってください。")
+    embed.set_footer(text="※ハウスルールに合わせて適宜入れ替えや振り直しを行ってください。")
     await ctx.send(embed=embed)
 
 @bot.command(name="coc7")
 async def coc_7th_cmd(ctx):
     embed = discord.Embed(
         title="🐙 新クトゥルフ神話TRPG (7版) キャラクター作成",
-        description=f"{ctx.author.mention} さんの探索者候補です。好きなセットを1つ選んでください！",
+        description=f"{ctx.author.mention} さんの探索者候補です。好きなセットを選んでください！",
         color=0x992d22
     )
     for i in range(1, 4):
         embed.add_field(name=f"ーーー セット {i} ーーー", value=make_coc_7th(), inline=False)
-    embed.set_footer(text="※ハウスルールに合わせて適宜入れ替えや再配分を行ってください。")
+    embed.set_footer(text="※7版は数値が5倍済みです。年齢補正（MOV減少など）は別途適用してください。")
     await ctx.send(embed=embed)
 
-@bot.command(name="ft", aliases=["tokucho"])async def feature_cmd(ctx):
+@bot.command(name="ft", aliases=["tokucho"])
+async def feature_cmd(ctx):
     embed = discord.Embed(
         title="📜 2015特徴表ダイス (1D6 / 1D10)",
         description=f"{ctx.author.mention} さんの特徴表ロール結果（3セット）です。",
@@ -144,7 +143,7 @@ async def coc_7th_cmd(ctx):
     )
     for i in range(1, 4):
         embed.add_field(name=f"候補 {i}", value=roll_feature(), inline=False)
-    embed.set_footer(text="※上記3つより選択してください。")
-    await ctx.send(embed=embed) 
+    embed.set_footer(text="※デメリット特徴が出た場合は指示に従って追加技能ポイントを割り振ってください。")
+    await ctx.send(embed=embed)
 
 bot.run(os.environ.get('DISCORD_BOT_TOKEN'))
