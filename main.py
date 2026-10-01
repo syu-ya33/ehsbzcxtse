@@ -50,7 +50,7 @@ def make_coc_7th():
     pow_val = roll_dice(3, 6) * 5
     siz = (roll_dice(2, 6) + 6) * 5
     int_val = (roll_dice(2, 6) + 6) * 5
-    edu = (roll_dice(3, 6) + 3) * 5
+    edu = (roll_dice(2, 6) + 6) * 5
     
     total = str_val + con + dex + app + pow_val + siz + int_val + edu
     hp = (con + siz) // 10
