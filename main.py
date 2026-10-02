@@ -179,7 +179,7 @@ def roll_feature():
     if d6 == 4:
         bonus_dice = random.randint(1, 6)
         points = bonus_dice * 10
-        result_str += f" ⚠️️ **[デメリット特徴]** ＋{points}pt (1D6:{bonus_dice}×10) の追加技能P獲得！"
+        result_str += f"**[D]** ＋{points}pt (1D6:{bonus_dice}×10) の追加技能Pt獲得"
     return result_str
 
 # --- Embed 生成用関数 ---
