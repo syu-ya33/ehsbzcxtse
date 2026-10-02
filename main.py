@@ -165,14 +165,14 @@ def roll_feature():
     if d6 == 4:
         bonus_dice = random.randint(1, 6)
         points = bonus_dice * 10
-        result_str += f" ⚠️️ **[D]** ＋{points}pt (1D6:{bonus_dice}×10) の追加技能P獲得！"
+        result_str += f" ⚠️️ **[D]** ＋{points}pt (1D6:{bonus_dice}×10) の追加技能Pt"
     return result_str
 
 # --- Embed 生成用関数 ---
 def create_coc6_embed(author_mention):
     embed = discord.Embed(
         title="🎲 クトゥルフ神話TRPG (6版) キャラクター作成",
-        description=f"{author_mention} さんの探索者候補です。",
+        description=f"{author_mention} さんのダイス結果。",
         color=0x2b2d31
     )
     for i in range(1, 4):
@@ -183,7 +183,7 @@ def create_coc6_embed(author_mention):
 def create_coc7_embed(author_mention):
     embed = discord.Embed(
         title="🐙 新クトゥルフ神話TRPG (7版) キャラクター作成",
-        description=f"{author_mention} さんの探索者候補です。",
+        description=f"{author_mention} さんのダイス結果。",
         color=0x992d22
     )
     for i in range(1, 4):
@@ -194,18 +194,18 @@ def create_coc7_embed(author_mention):
 def create_coc7_elem_embed(author_mention, age=10):
     embed = discord.Embed(
         title=f"🎒 7版 小学生探索者作成 ({age}歳)",
-        description=f"{author_mention} さんの小学生候補です（3セット）。",
+        description=f"{author_mention} さんのダイス結果。",
         color=0x3498db
     )
     for i in range(1, 4):
         embed.add_field(name=f"ーーー セット {i} ーーー", value=make_coc_7th_elem(age), inline=False)
-    embed.set_footer(text="※EDUは (年齢-6)*5 で算出済みです。幸運は高い方を採用")
+    embed.set_footer(text="※EDUは (年齢-6)*5 で算出済み。幸運は高い方を採用")
     return embed
 
 def create_coc7_jhs_embed(author_mention, age=13):
     embed = discord.Embed(
         title=f"🏫 7版 中学生探索者作成 ({age}歳)",
-        description=f"{author_mention} さんの中学生候補です（3セット）。",
+        description=f"{author_mention} さんのダイス結果。",
         color=0x2ecc71
     )
     for i in range(1, 4):
@@ -216,7 +216,7 @@ def create_coc7_jhs_embed(author_mention, age=13):
 def create_ft_embed(author_mention):
     embed = discord.Embed(
         title="📜 2015特徴表ダイス (1D6 / 1D10)",
-        description=f"{author_mention} さんの特徴表ロール結果（3セット）です。",
+        description=f"{author_mention} さんのダイス結果。",
         color=0xe67e22
     )
     for i in range(1, 4):
