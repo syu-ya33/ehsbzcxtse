@@ -165,7 +165,7 @@ def roll_feature():
     if d6 == 4:
         bonus_dice = random.randint(1, 6)
         points = bonus_dice * 10
-        result_str += f" ⚠️️ **[デメリット特徴]** ＋{points}pt (1D6:{bonus_dice}×10) の追加技能P獲得！"
+        result_str += f" ⚠️️ **[D]** ＋{points}pt (1D6:{bonus_dice}×10) の追加技能P獲得！"
     return result_str
 
 # --- Embed 生成用関数 ---
@@ -177,7 +177,7 @@ def create_coc6_embed(author_mention):
     )
     for i in range(1, 4):
         embed.add_field(name=f"ーーー セット {i} ーーー", value=make_coc_6th(), inline=False)
-    embed.set_footer(text="※ハウスルールに合わせて適宜入れ替えや振り直しを行ってください。")
+    embed.set_footer(text="※ハウスルールに合わせて[能力値の調整]や[年齢補正]を行ってください。")
     return embed
 
 def create_coc7_embed(author_mention):
@@ -188,7 +188,7 @@ def create_coc7_embed(author_mention):
     )
     for i in range(1, 4):
         embed.add_field(name=f"ーーー セット {i} ーーー", value=make_coc_7th(), inline=False)
-    embed.set_footer(text="※7版は数値が5倍済みです。年齢補正は別途適用してください。")
+    embed.set_footer(text="※年齢補正は別途適用してください。")
     return embed
 
 def create_coc7_elem_embed(author_mention, age=10):
@@ -199,7 +199,7 @@ def create_coc7_elem_embed(author_mention, age=10):
     )
     for i in range(1, 4):
         embed.add_field(name=f"ーーー セット {i} ーーー", value=make_coc_7th_elem(age), inline=False)
-    embed.set_footer(text="※EDUは (年齢-6)*5 で算出済みです。幸運は高い方を採用可能です。")
+    embed.set_footer(text="※EDUは (年齢-6)*5 で算出済みです。幸運は高い方を採用")
     return embed
 
 def create_coc7_jhs_embed(author_mention, age=13):
@@ -210,7 +210,7 @@ def create_coc7_jhs_embed(author_mention, age=13):
     )
     for i in range(1, 4):
         embed.add_field(name=f"ーーー セット {i} ーーー", value=make_coc_7th_jhs(age), inline=False)
-    embed.set_footer(text="※EDUは (年齢-6)*5 で算出済みです。幸運は高い方を採用可能です。")
+    embed.set_footer(text="※EDUは (年齢-6)*5 で算出済み。幸運は高い方を採用。")
     return embed
 
 def create_ft_embed(author_mention):
@@ -221,7 +221,7 @@ def create_ft_embed(author_mention):
     )
     for i in range(1, 4):
         embed.add_field(name=f"候補 {i}", value=roll_feature(), inline=False)
-    embed.set_footer(text="※デメリット特徴が出た場合は指示に従って追加技能ポイントを割り振ってください。")
+    embed.set_footer(text="※デメリット特徴の追加技能ポイントは算出済み")
     return embed
 
 @bot.event
