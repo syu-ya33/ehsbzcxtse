@@ -159,13 +159,27 @@ def make_coc_7th_jhs(age=13):
     )
 
 def roll_feature():
-    d6 = random.randint(1, 6)
-    d10 = random.randint(1, 10)
+    # 除外したい出目 (d6, d10) のタプルリスト
+    EXCLUDED_RESULTS = [
+        (1, 10),
+        (4, 9),
+        (6, 1),
+        (6, 10)
+    ]
+    
+    while True:
+        d6 = random.randint(1, 6)
+        d10 = random.randint(1, 10)
+        
+        # 除外リストに含まれていなければ確定
+        if (d6, d10) not in EXCLUDED_RESULTS:
+            break
+
     result_str = f"**{d6}-{d10}**"
     if d6 == 4:
         bonus_dice = random.randint(1, 6)
         points = bonus_dice * 10
-        result_str += f" ⚠️️ **[D]** ＋{points}pt (1D6:{bonus_dice}×10) の追加技能Pt"
+        result_str += f" ⚠️️ **[デメリット特徴]** ＋{points}pt (1D6:{bonus_dice}×10) の追加技能P獲得！"
     return result_str
 
 # --- Embed 生成用関数 ---
