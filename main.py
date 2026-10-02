@@ -246,7 +246,7 @@ async def coc7_jhs_cmd(ctx, age: int = 13):
     age = max(13, min(14, age))
     await ctx.send(embed=create_coc7_jhs_embed(ctx.author.mention, age))
 
-@bot.command(name="ft", aliases=["tokucho"])
+@bot.command(name="t_特徴表", aliases=["tokucho"])
 async def feature_cmd(ctx): await ctx.send(embed=create_ft_embed(ctx.author.mention))
 
 # --- スラッシュコマンド (/) ---
@@ -258,19 +258,19 @@ async def slash_coc6(interaction: discord.Interaction):
 async def slash_coc7(interaction: discord.Interaction):
     await interaction.response.send_message(embed=create_coc7_embed(interaction.user.mention))
 
-@bot.tree.command(name="coc7_elem", description="7th小学生探索者作成 (7〜12歳)")
+@bot.tree.command(name="coc7_小学生", description="7th小学生探索者作成 (7〜12歳)")
 @app_commands.describe(age="対象の年齢 (7〜12)。指定なしで10歳")
 async def slash_coc7_elem(interaction: discord.Interaction, age: int = 10):
     age = max(7, min(12, age))
     await interaction.response.send_message(embed=create_coc7_elem_embed(interaction.user.mention, age))
 
-@bot.tree.command(name="coc7_jhs", description="7th中学生探索者作成 (13〜14歳)")
+@bot.tree.command(name="coc7_中学生", description="7th中学生探索者作成 (13〜14歳)")
 @app_commands.describe(age="対象の年齢 (13〜14)。指定なしで13歳")
 async def slash_coc7_jhs(interaction: discord.Interaction, age: int = 13):
     age = max(13, min(14, age))
     await interaction.response.send_message(embed=create_coc7_jhs_embed(interaction.user.mention, age))
 
-@bot.tree.command(name="ft", description="2015特徴表ダイス決定（3セット）")
+@bot.tree.command(name="t_特徴表", description="2015特徴表ダイス決定（3セット）")
 async def slash_ft(interaction: discord.Interaction):
     await interaction.response.send_message(embed=create_ft_embed(interaction.user.mention))
 
